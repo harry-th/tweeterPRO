@@ -6,7 +6,10 @@
 html {
   box-sizing: border-box;
 }
-*, *:before, *:after {
+
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -17,9 +20,43 @@ html {
 body {
   color: #545149;
   background-color: #f4f1ec;
+  font-family: 'Source Sans Pro';
   font-size: 24px;
+  background-color: #5ddb83;
+  background-image: url("https://www.transparenttextures.com/patterns/3px-tile.png");
 }
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+.container {
+  color: whitesmoke;
+  width: 90%;
+  margin: auto;
+}
+
+.container textarea {
+  resize: none;
+  border: none;
+  font-family: 'Source Sans Pro';
+  outline: none;
+  background: transparent;
+  color: whitesmoke;
+  font-size: 16px;
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.container output {
+  color:'whitesmoke';
+  float: right;
+}
+
+.container section {
+  background-color: rgba(85, 92, 134, 0.5);
+  padding: 20px;
+}

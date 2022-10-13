@@ -29,6 +29,13 @@ body {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+#upButton {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 20px;
+  z-index: 3;
+}
 
 .container {
   color: whitesmoke;
@@ -43,7 +50,7 @@ section textarea {
   outline: none;
   background: transparent;
   color: whitesmoke;
-  font-size: 16px;
+  font-size: 24px;
 }
 
 section form {
@@ -56,24 +63,41 @@ section output {
 }
 
 section {
+  height:180px;
   background-color: rgba(85, 92, 134, 0.5);
   padding: 20px;
 }
-
+.tweet-container {
+  min-height: 100vh;
+}
 article {
   margin-top: 20px;
+  height:180px;
   display: block;
-  font-size: 20px;
   border: 2px solid black;
   padding: 15px;
-  background-color: rgb(245, 245, 245,0.5);
+  background-color: rgb(245, 245, 245,0.8);
   color:black;
+  position: relative;
+  top:0px;
+  z-index: 1;
+}
+article header div {
+  color: #4056A1;
+}
+article header img {
+  width:35px;
+}
+article header p {
+  font-size: 20px;
 }
 
 article:hover {
   box-shadow: 1px 1px 1px #4056A1;
 }
-
+article footer time {
+  color: #4056A1;
+}
 article footer span {
   float: right
 }

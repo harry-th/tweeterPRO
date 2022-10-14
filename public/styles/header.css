@@ -1,8 +1,0 @@
-header.pageHeader {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 600px;
-    padding-top: 120px;
-    align-items: center;
-   }

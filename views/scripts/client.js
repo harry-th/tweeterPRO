@@ -4,6 +4,8 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+// let Tweet =  require('../../server/model/tweet');
+
 const escapee = function(str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
@@ -13,9 +15,9 @@ const escapee = function(str) {
 let createTweetElement = function(tweetObj) {
   const tweet = $(`<article>
 <header>
-    <div><img src=${escapee(tweetObj.user.avatars)}/> ${escapee(tweetObj.user.name)}</div>
+    <div><img src=${escapee(tweetObj.avatar)}/> ${escapee(tweetObj.name)}</div>
     <p>
-    ${escapee(tweetObj.content.text)}
+    ${escapee(tweetObj.text)}
     </p>
 </header>
 <hr />

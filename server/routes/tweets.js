@@ -1,47 +1,26 @@
 "use strict";
-
-const userHelper = require("../lib/util/user-helper");
+const Tweet = require('../model/tweet.js');
+const asyncWrapper = require('../middleware/asyncWrapper');
 
 const express = require('express');
+const User = require('../model/user.js');
 const tweetsRoutes = express.Router();
 
-module.exports = function(DataHelpers) {
+module.exports = function() {
 
-  tweetsRoutes.get("/", function(req, res) {
-    DataHelpers.getTweets((err, tweets) => {
-      if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-        res.json(tweets);
-      }
-    });
-  });
+  tweetsRoutes.get("/", asyncWrapper(async(req, res) => {
+    const tweets = await Tweet.find({});
+    res.json(tweets);
+  }));
 
-  tweetsRoutes.post("/", function(req, res) {
-    if (!req.body.text) {
-      res.status(400).json({ error: 'invalid request: no data in POST body' });
-      return;
-    }
 
-    const user = req.body.user ? req.body.user : userHelper.generateRandomUser();
-    const tweet = {
-      user: user,
-      content: {
-        text: req.body.text
-      },
-      // eslint-disable-next-line camelcase
-      created_at: Date.now()
-    };
-
-    DataHelpers.saveTweet(tweet, (err) => {
-      if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-        res.status(201).send();
-      }
-    });
-  });
+  tweetsRoutes.post("/", asyncWrapper(async(req, res) => {
+    let user = await User.findOne(req.session.userId);
+    // eslint-disable-next-line camelcase
+    let twot = {...req.body,name:user.username,avatar:user.avatar,created_at:Date.now()};
+    Tweet.create(twot);
+    res.status(201).send();
+  }));
 
   return tweetsRoutes;
-
 };

@@ -1,4 +1,5 @@
 "use strict";
+// require('dotenv').config();
 
 // Basic express setup:
 
@@ -19,8 +20,9 @@ const Tweet = require('./model/tweet');
 
 const asyncWrapper = require('./middleware/asyncWrapper');
 let cookieSession = require('cookie-session');
-require('dotenv').config();
 let bcrypt = require('bcryptjs');
+const { default: mongoose } = require('mongoose');
+
 // const tweetsRoutes = require("./routes/tweets")();
 
 // Mount the tweets routes at the "/tweets" path prefix:
@@ -30,7 +32,6 @@ app.use(cookieSession({
   name:'session',
   keys:['hello']
 }));
-
 
 
 
@@ -93,10 +94,13 @@ app.post('/profileImg', asyncWrapper(async(req,res)=>{
   res.status(200).send();
 }));
 
+
+
+
 const start = async() => {
   try {
     await databaseConnect(process.env.MONGO_URI);
-    app.listen(8080, () => {
+    app.listen(process.env.PORT || PORT, () => {
       console.log("Example app listening on port " + PORT);
     });
   } catch (error) {

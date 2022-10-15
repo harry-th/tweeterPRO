@@ -11,7 +11,7 @@ const TweetSchema = new mongoose.Schema({
     type: String,
     maxLength:[140, 'tweets are 140 characters']
   },
-  likes : {
+  likes: {
     type: Number,
     default: 0
   },

@@ -11,6 +11,10 @@ const TweetSchema = new mongoose.Schema({
     type: String,
     maxLength:[140, 'tweets are 140 characters']
   },
+  likes : {
+    type: Number,
+    default: 0
+  },
   // eslint-disable-next-line camelcase
   created_at : {
     type: Number,

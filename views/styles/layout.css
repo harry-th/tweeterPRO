@@ -104,8 +104,17 @@ article footer span {
 }
 
 article footer span i {
-  font-size: 14px;
+  font-size: 25px;
   margin-right: 10px;
+}
+
+article footer span i::after {
+  content:attr(value);
+  color: whitesmoke;
+  font-size: 12px;
+  position: relative;
+  left: -16px;
+  top: -5px;
 }
 
 article footer span i:hover {

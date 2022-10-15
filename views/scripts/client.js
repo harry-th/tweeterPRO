@@ -25,7 +25,7 @@ let createTweetElement = function(tweetObj) {
     <span>
         <i class="fa-solid fa-flag"></i>
         <i class="fa-regular fa-retweet"></i>
-        <i class="fa-solid fa-heart"></i>
+        <i class="fa-solid fa-heart" value=${tweetObj.likes}></i>
     </span>
 </footer>
 </article>`);

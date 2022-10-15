@@ -31,6 +31,9 @@ app.use(cookieSession({
   keys:['hello']
 }));
 
+
+
+
 app.get('/', asyncWrapper(async(req,res)=>{
   let userId = req.session.userId;
   if (!userId) res.redirect('login');
@@ -74,8 +77,7 @@ app.post('/register', asyncWrapper(async(req,res)=>{
 }));
 
 app.get("/tweets", asyncWrapper(async(req, res) => {
-  const tweets = await Tweet.find({});
-  res.json(tweets);
+  res.status(200).json(await Tweet.find({}));
 }));
 app.post("/tweets", asyncWrapper(async(req, res) => {
   let user = await User.findOne({_id: req.session.userId});

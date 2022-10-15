@@ -94,16 +94,12 @@ app.post('/profileImg', asyncWrapper(async(req,res)=>{
   res.status(200).send();
 }));
 
-const aws = require('aws-sdk');
 
 
-let s3 = new aws.S3({
-  d: process.env.MONGO_URI,
-});
-console.log(MONGO_URI)
+
 const start = async() => {
   try {
-    await databaseConnect(d);
+    await databaseConnect(process.env.MONGO_URI);
     app.listen(process.env.PORT || PORT, () => {
       console.log("Example app listening on port " + PORT);
     });

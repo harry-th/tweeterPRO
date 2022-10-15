@@ -98,12 +98,12 @@ const aws = require('aws-sdk');
 
 
 let s3 = new aws.S3({
-  MONGO_URI: process.env.MONGO_URI,
+  d: process.env.MONGO_URI,
 });
 console.log(MONGO_URI)
 const start = async() => {
   try {
-    await databaseConnect(MONGO_URI);
+    await databaseConnect(d);
     app.listen(process.env.PORT || PORT, () => {
       console.log("Example app listening on port " + PORT);
     });

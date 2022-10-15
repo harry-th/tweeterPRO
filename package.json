@@ -11,6 +11,7 @@
   "author": "Harry Thomas",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.1233.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.15.2",
     "chance": "^1.0.2",
@@ -19,8 +20,7 @@
     "ejs": "^3.1.8",
     "express": "^4.13.4",
     "md5": "^2.1.0",
-    "mongoose": "^6.6.5",
-    "node": "^18.11.0"
+    "mongoose": "^6.6.5"
   },
   "devDependencies": {
     "nodemon": "^1.9.2"

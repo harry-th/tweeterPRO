@@ -94,11 +94,16 @@ app.post('/profileImg', asyncWrapper(async(req,res)=>{
   res.status(200).send();
 }));
 
-let uri = process.env.MONGO_URI;
+const aws = require('aws-sdk');
+
+let s3 = new aws.S3({
+  accessKeyId: process.env.S3_KEY,
+  secretAccessKey: process.env.S3_SECRET
+});
 
 const start = async() => {
   try {
-    await mongoose.connect(MONGOLAB_URI);
+    await mongoose.connect(process.env.MONGO_URI);
     app.listen(process.env.PORT || PORT, () => {
       console.log("Example app listening on port " + PORT);
     });

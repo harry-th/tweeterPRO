@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const TweetSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -15,11 +14,17 @@ const TweetSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
+  likedBy :{
+    type: Array,
+  },
+    
   // eslint-disable-next-line camelcase
   created_at : {
     type: Number,
 
   }
 });
+
+
 
 module.exports = mongoose.model('Tweet', TweetSchema);

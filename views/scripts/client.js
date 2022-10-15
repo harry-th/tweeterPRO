@@ -12,9 +12,11 @@ const escapee = function(str) {
 };
 
 let createTweetElement = function(tweetObj) {
+   
+ 
   const tweet = $(`<article>
-<header>
-    <div><img src=${escapee(tweetObj.avatar)}/> ${escapee(tweetObj.name)}</div>
+<header class ='tweet'>
+    <div><img src=${escapee(tweetObj.avatar)}/>${escapee(tweetObj.name)}</div>
     <p>
     ${escapee(tweetObj.text)}
     </p>
@@ -23,9 +25,10 @@ let createTweetElement = function(tweetObj) {
 <footer>
     <time>${escapee(timeago.format(tweetObj.created_at))}</time>
     <span>
+    <span>liked: ${tweetObj.likedBy.slice(0,2).join(', ')}...</span>
         <i class="fa-solid fa-flag"></i>
         <i class="fa-regular fa-retweet"></i>
-        <i class="fa-solid fa-heart" value=${tweetObj.likes}></i>
+        <i class="likeButton fa-solid fa-heart" value=${tweetObj.likedBy.length.toString()}></i>
     </span>
 </footer>
 </article>`);
@@ -67,11 +70,23 @@ let  pollServer = () => {
         // oldData = data;
       }
       pollServer();
+    }).then(() => {
+      $('.tweet-container i.likeButton').off();
+      $('.tweet-container i.likeButton').on('click', function() {
+        let d = $(this).parents('article');
+
+        let name = d.find('div').text();
+        let text = d.find('p').text().trim();
+
+        $.post('/like', {name, text});
+      });
     });
   }, 2000);
 };
 
+
 $(document).ready(function() {
+  
   $('#upButton').hide();
   $('#upButton').on('click', ()=> $(window).scrollTop(0,0));
   $(window).on('scroll',scrollButton);
@@ -98,5 +113,9 @@ $(document).ready(function() {
   $('.new-tweet').hide();
   $('#dropTweet').on('click',()=>{
     $('.new-tweet').slideToggle('slow');
+    $('#tweet-text').focus();
   });
+  // $.get('/tweets', (data) => {
+  //   renderTweets(data);
+  // });
 });

@@ -21,6 +21,7 @@ const Tweet = require('./model/tweet');
 const asyncWrapper = require('./middleware/asyncWrapper');
 let cookieSession = require('cookie-session');
 let bcrypt = require('bcryptjs');
+const tweet = require("./model/tweet");
 
 // const tweetsRoutes = require("./routes/tweets")();
 
@@ -76,6 +77,14 @@ app.post('/register', asyncWrapper(async(req,res)=>{
   }
 }));
 
+
+app.post('/like', asyncWrapper(async(req, res) =>{
+  let user = await User.findOne({_id: req.session.userId}).select({_id: 0, username:1});
+  console.log(req.body, user);
+  await Tweet.findOneAndUpdate(req.body,{$addToSet:{likedBy: user.username}});
+}));
+
+
 app.get("/tweets", asyncWrapper(async(req, res) => {
   res.status(200).json(await Tweet.find({}));
 }));
@@ -98,7 +107,7 @@ app.post('/profileImg', asyncWrapper(async(req,res)=>{
 
 const start = async() => {
   try {
-    await databaseConnect(process.env.MONGO_URI);
+    await databaseConnect('mongodb+srv://harryJames:STRgp00EBU7Xuzrt@nodeexpress.pmpwa.mongodb.net/tweeter?retryWrites=true&w=majority');
     app.listen(process.env.PORT || PORT, () => {
       console.log("Example app listening on port " + PORT);
     });

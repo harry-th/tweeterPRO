@@ -1,4 +1,5 @@
 "use strict";
+const path = require('path')
 require('dotenv').config();
 
 // Basic express setup:
@@ -21,6 +22,7 @@ const Tweet = require('./model/tweet');
 const asyncWrapper = require('./middleware/asyncWrapper');
 let cookieSession = require('cookie-session');
 let bcrypt = require('bcryptjs');
+const { connect } = require('mongoose');
 // const tweetsRoutes = require("./routes/tweets")();
 
 // Mount the tweets routes at the "/tweets" path prefix:
@@ -92,6 +94,8 @@ app.post('/profileImg', asyncWrapper(async(req,res)=>{
   await User.findOneAndUpdate({_id: userId}, {avatar: req.body.img});
   res.status(200).send();
 }));
+
+
 
 const start = async() => {
   try {

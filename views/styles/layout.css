@@ -114,6 +114,7 @@ article footer span i::after {
   font-size: 13px;
   position: relative;
   left: -15px;
+  top:-1px;
   vertical-align: middle;
   text-align: center;
 }

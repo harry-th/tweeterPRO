@@ -96,7 +96,7 @@ app.post('/profileImg', asyncWrapper(async(req,res)=>{
 const start = async() => {
   try {
     await databaseConnect(process.env.MONGO_URI);
-    app.listen(process.env.port || PORT, () => {
+    app.listen(process.env.PORT || PORT, () => {
       console.log("Example app listening on port " + PORT);
     });
   } catch (error) {

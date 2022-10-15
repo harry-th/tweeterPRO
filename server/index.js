@@ -21,7 +21,6 @@ const Tweet = require('./model/tweet');
 const asyncWrapper = require('./middleware/asyncWrapper');
 let cookieSession = require('cookie-session');
 let bcrypt = require('bcryptjs');
-const { default: mongoose } = require('mongoose');
 
 // const tweetsRoutes = require("./routes/tweets")();
 

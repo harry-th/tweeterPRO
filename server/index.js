@@ -1,4 +1,5 @@
 "use strict";
+require('dotenv').config();
 
 // Basic express setup:
 
@@ -19,7 +20,6 @@ const Tweet = require('./model/tweet');
 
 const asyncWrapper = require('./middleware/asyncWrapper');
 let cookieSession = require('cookie-session');
-require('dotenv').config();
 let bcrypt = require('bcryptjs');
 // const tweetsRoutes = require("./routes/tweets")();
 

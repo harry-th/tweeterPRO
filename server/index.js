@@ -36,8 +36,7 @@ app.use(cookieSession({
 
 app.get('/', asyncWrapper(async(req,res)=>{
   let userId = req.session.userId;
-  console.log(!userId)
-  if (!userId) res.redirect('login');
+  if (!userId) res.redirect('/login');
   if (userId) {
     let user = await User.findOne({_id: userId}).select({password: 0, _id: 0});
     res.render('index', user);

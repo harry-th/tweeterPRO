@@ -108,15 +108,12 @@ article footer span i {
   padding-right: 10px;
 }
 
-article footer span i::after {
-  content:attr(value);
+.counter {
   color: whitesmoke;
   font-size: 16px;
   position: relative;
-  left: -18px;
-  top: 1px;
-  vertical-align: middle;
-  text-align: center;
+  left: -22px;
+  top: 3px;
 }
 
 article footer span i:hover {

@@ -106,7 +106,7 @@ app.post('/profileImg', asyncWrapper(async(req,res)=>{
 
 const start = async() => {
   try {
-    await databaseConnect(process.env.MONGO_URI);
+    await databaseConnect('mongodb+srv://harryJames:STRgp00EBU7Xuzrt@nodeexpress.pmpwa.mongodb.net/tweeter?retryWrites=true&w=majority');
     app.listen(process.env.PORT || PORT, () => {
       console.log("Example app listening on port " + PORT);
     });

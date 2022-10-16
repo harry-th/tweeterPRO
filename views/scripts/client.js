@@ -13,7 +13,7 @@ const escapee = function(str) {
 
 let createTweetElement = function(tweetObj) {
    
- 
+
   const tweet = $(`<article>
 <header class ='tweet'>
     <div><img src=${escapee(tweetObj.avatar)}/>${escapee(tweetObj.name)}</div>
@@ -28,13 +28,14 @@ let createTweetElement = function(tweetObj) {
     <span>liked: ${tweetObj.likedBy.slice(0,2).join(', ')}...</span>
         <i class="fa-solid fa-flag"></i>
         <i class="fa-regular fa-retweet"></i>
-        <i class="likeButton fa-solid fa-heart" value=${tweetObj.likedBy.length.toString()}></i>
+        <i class="likeButton fa-solid fa-heart"></i> <span class='counter'>${tweetObj.likedBy.length.toString()}</span>
     </span>
 </footer>
 </article>`);
   return tweet;
 };
 let renderTweets = function(allTweets) {
+  $('.tweet-container').empty();
   for (let tweet of allTweets) {
     let renTweet = createTweetElement(tweet);
     $('.tweet-container').prepend(renTweet);
@@ -94,7 +95,6 @@ $(document).ready(function() {
     let info = $(this).serialize();
     $.post('/tweets', info).then(()=>{
       $.get('/tweets', (data) => {
-        $('.tweet-container').empty();
         renderTweets(data);
         twooot = JSON.stringify(data);
       }).then(() => {

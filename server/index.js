@@ -35,7 +35,6 @@ app.use(cookieSession({
 
 
 app.get('/', asyncWrapper(async(req,res)=>{
-  let userId = req.session.userId;
   if (!userId) res.redirect('/login');
   if (userId) {
     let user = await User.findOne({_id: userId}).select({password: 0, _id: 0});
@@ -43,6 +42,7 @@ app.get('/', asyncWrapper(async(req,res)=>{
   }
 }));
 app.get('/login',(req,res)=>{
+  let userId = req.session.userId;
   if(userId) res.redirect('/')
   res.render('login');
 });

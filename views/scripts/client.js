@@ -28,7 +28,8 @@ let createTweetElement = function(tweetObj) {
     <span>liked: ${tweetObj.likedBy.slice(0,2).join(', ')}...</span>
         <i class="fa-solid fa-flag"></i>
         <i class="fa-regular fa-retweet"></i>
-        <i class="likeButton fa-solid fa-heart"></i> <span class='counter'>${tweetObj.likedBy.length.toString()}</span>
+        <span class='counter'>${tweetObj.likedBy.length.toString()}</span>
+        <i class="likeButton fa-solid fa-heart"></i> 
     </span>
 </footer>
 </article>`);

@@ -121,8 +121,6 @@ article footer span i {
 i:hover, .counter:hover {
   cursor: pointer;
 }
-
- 
   article footer span i:hover {
   color: #4056A1
 }

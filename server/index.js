@@ -89,6 +89,9 @@ app.get("/tweets", asyncWrapper(async(req, res) => {
 }));
 app.post("/tweets", asyncWrapper(async(req, res) => {
   let user = await User.findOne({_id: req.session.userId});
+  if (!user.avatar) {
+    return res.status(500).send('need to choose profile picture');
+  }
   // eslint-disable-next-line camelcase
   let twot = {...req.body,name:user.username,avatar:user.avatar,created_at:Date.now()};
   Tweet.create(twot);
@@ -106,7 +109,7 @@ app.post('/profileImg', asyncWrapper(async(req,res)=>{
 
 const start = async() => {
   try {
-    await databaseConnect('mongodb+srv://harryJames:STRgp00EBU7Xuzrt@nodeexpress.pmpwa.mongodb.net/tweeter?retryWrites=true&w=majority');
+    await databaseConnect(process.env.MONGO_URI);
     app.listen(process.env.PORT || PORT, () => {
       console.log("Example app listening on port " + PORT);
     });

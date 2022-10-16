@@ -106,6 +106,15 @@ $(document).ready(function() {
           top:'+=195px',
         }, 800, 'linear');
       });
+    }).fail(function(msg) {
+      console.log((msg.responseText));
+      $('#tweetForm').hide();
+      $('#error-message p').text(msg.responseText);
+      $('#error-message').slideDown('medium');
+      setTimeout(()=>{
+        $('#tweetForm').fadeIn();
+        $('#error-message').hide();
+      },4000);
     });
     e.preventDefault();
   });

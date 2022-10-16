@@ -20,6 +20,12 @@ header.pageHeader {
 .profileImg:hover {
     background-color: #4056A1;
 }
+span.profileTag {
+    margin: 10px;
+    font-size: 16px;
+    font-weight: 800;
+    text-decoration: underline;
+}
 .user {
     display: flex;
     flex-direction: column;

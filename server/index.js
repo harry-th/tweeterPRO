@@ -44,7 +44,7 @@ app.get('/', asyncWrapper(async(req,res)=>{
 }));
 app.get('/login',(req,res)=>{
   let userId = req.session.userId;
-  if(userId) res.redirect('/')
+  if (userId) res.redirect('/');
   res.render('login');
 });
 app.post('/login', asyncWrapper(async(req,res)=>{

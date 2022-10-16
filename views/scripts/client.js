@@ -39,7 +39,6 @@ let renderTweets = function(allTweets) {
   for (let tweet of allTweets) {
     let renTweet = createTweetElement(tweet);
     $('.tweet-container').prepend(renTweet);
-   
   }
 };
 let scrollButton = () => {
@@ -72,8 +71,8 @@ let  pollServer = () => {
       }
       pollServer();
     }).then(() => {
-      $('.tweet-container i.likeButton').off();
-      $('.tweet-container i.likeButton').on('click', function() {
+      $('i.likeButton, .counter').off();
+      $('i.likeButton, .counter').on('click', function() {
         let d = $(this).parents('article');
 
         let name = d.find('div').text();

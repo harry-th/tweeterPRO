@@ -115,7 +115,10 @@ article footer span i {
   left: -22px;
   top: 3px;
 }
-
+i, .counter:hover {
+  cursor: pointer;
+}
+ 
 article footer span i:hover {
   color: #4056A1
 }

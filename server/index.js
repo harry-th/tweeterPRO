@@ -45,7 +45,8 @@ app.get('/', asyncWrapper(async(req,res)=>{
 app.get('/login',(req,res)=>{
   let userId = req.session.userId;
   if (userId) res.redirect('/');
-  res.render('login');
+  else
+    res.render('login',{errorMessage: ''});
 });
 app.post('/login', asyncWrapper(async(req,res)=>{
   let {email, password} = req.body;
@@ -54,7 +55,7 @@ app.post('/login', asyncWrapper(async(req,res)=>{
     req.session.userId = user._id;
     res.redirect('/');
   } else {
-    res.send('nope');
+    res.render('login',{errorMessage:'incorrect information'});
   }
 
 
@@ -69,7 +70,7 @@ app.post('/register', asyncWrapper(async(req,res)=>{
   let userDB = await User.findOne({email});
   let emailDB = await User.findOne({username});
   if (userDB || emailDB) {
-    res.send('that won\'t work');
+    res.render('login',{errorMessage:'email or username already exists'});
   } else {
     password = bcrypt.hashSync(password, 10);
     let user = await User.create({username:username, email:email, password:password});
@@ -115,7 +116,7 @@ app.post('/profileImg', asyncWrapper(async(req,res)=>{
 
 const start = async() => {
   try {
-    await databaseConnect(process.env.MONGO_URI);
+    await databaseConnect('mongodb+srv://harryJames:STRgp00EBU7Xuzrt@nodeexpress.pmpwa.mongodb.net/tweeter?retryWrites=true&w=majority');
     app.listen(process.env.PORT || PORT, () => {
       console.log("Example app listening on port " + PORT);
     });

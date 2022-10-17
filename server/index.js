@@ -92,7 +92,6 @@ app.get("/tweets", asyncWrapper(async(req, res) => {
 }));
 app.post("/tweets", asyncWrapper(async(req, res) => {
   let user = await User.findOne({_id: req.session.userId});
-  console.log(req.body);
   if (!req.body.text) {
     return res.status(500).send('can\'t send empty message');
   }

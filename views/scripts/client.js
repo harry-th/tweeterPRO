@@ -25,7 +25,7 @@ let createTweetElement = function(tweetObj) {
 <footer>
     <time>${escapee(timeago.format(tweetObj.created_at))}</time>
     <span>
-    <span>liked: ${tweetObj.likedBy.slice(0,2).join(', ')}...</span>
+    <span>liked: ${tweetObj.likedBy.slice(0,4).join(', ')}...</span>
         <i class="fa-solid fa-flag"></i>
         <i class="fa-regular fa-retweet"></i>
         <span class='counter'>${tweetObj.likedBy.length.toString()}</span>

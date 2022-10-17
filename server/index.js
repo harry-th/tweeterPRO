@@ -45,7 +45,7 @@ app.get('/', asyncWrapper(async(req,res)=>{
 app.get('/login',(req,res)=>{
   let userId = req.session.userId;
   if (userId) res.redirect('/');
-  res.render('login');
+  res.render('login', {errorMessage: ''});
 });
 app.post('/login', asyncWrapper(async(req,res)=>{
   let {email, password} = req.body;
@@ -54,14 +54,14 @@ app.post('/login', asyncWrapper(async(req,res)=>{
     req.session.userId = user._id;
     res.redirect('/');
   } else {
-    res.send('nope');
+    res.render('login', {errorMessage: 'incorrect login information'});
   }
 
 
 }));
 app.post('/logout', (req,res)=>{
   req.session = null;
-  res.redirect('login');
+  res.redirect('login', {errorMessage: ''});
 });
 
 app.post('/register', asyncWrapper(async(req,res)=>{
@@ -69,7 +69,8 @@ app.post('/register', asyncWrapper(async(req,res)=>{
   let userDB = await User.findOne({email});
   let emailDB = await User.findOne({username});
   if (userDB || emailDB) {
-    res.send('that won\'t work');
+    res.render('login', {errorMessage: 'email or username is already in use'});
+
   } else {
     password = bcrypt.hashSync(password, 10);
     let user = await User.create({username:username, email:email, password:password});
@@ -97,7 +98,6 @@ app.post("/tweets", asyncWrapper(async(req, res) => {
   if (!user.avatar) {
     return res.status(500).send('need to choose profile picture');
   }
-  // eslint-disable-next-line camelcase
   let twot = {...req.body,name:user.username,avatar:user.avatar,created_at:Date.now()};
   Tweet.create(twot);
   res.status(201).send();

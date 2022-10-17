@@ -55,7 +55,7 @@
       <div id="registerForm">
         <button class="formToggle">Or Login</button> 
         <form class="userForm" method="post" action="/register">
-          <%= errorMessage || '' %> 
+          <%= errorMessage || 'Register?:' %> 
           <label for="username">username</label>
           <input type="text" name="username" required>
           <label for="email">email</label>
@@ -68,7 +68,7 @@
       <div id="loginForm">
         <button class="formToggle">Register?</button>
         <form class="userForm" method="post" action="/login">
-          <%= errorMessage || '' %>
+          <%= errorMessage || 'Login:' %>
           <label for="email">email</label>
           <input type="email" name="email" required>
           <label for="password">password</label>

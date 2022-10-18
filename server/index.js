@@ -1,5 +1,5 @@
 "use strict";
-// require('dotenv').config();
+require('dotenv').config();
 
 // Basic express setup:
 
@@ -114,7 +114,7 @@ app.post('/profileImg', asyncWrapper(async(req,res)=>{
 
 const start = async() => {
   try {
-    await databaseConnect(process.env.MONGO_URI);
+    await databaseConnect(process.env.MONGO_URI_LOCAL);
     app.listen(process.env.PORT || PORT, () => {
       console.log("Example app listening on port " + PORT);
     });

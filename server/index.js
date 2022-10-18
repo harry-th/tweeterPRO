@@ -83,7 +83,7 @@ app.post('/register', asyncWrapper(async(req,res)=>{
 app.post('/like', asyncWrapper(async(req, res) =>{
   let user = await User.findOne({_id: req.session.userId}).select({_id: 0, username:1});
   await Tweet.findOneAndUpdate(req.body,{$addToSet:{likedBy: user.username}});
-  res.status(200).end();
+   res.status(200).end();
 }));
 
 
@@ -114,7 +114,7 @@ app.post('/profileImg', asyncWrapper(async(req,res)=>{
 
 const start = async() => {
   try {
-    await databaseConnect(process.env.MONGO_URI);
+    await databaseConnect(process.env.MONGO_URI_LOCAL);
     app.listen(process.env.PORT || PORT, () => {
       console.log("Example app listening on port " + PORT);
     });

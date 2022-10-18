@@ -51,7 +51,6 @@ let scrollButton = () => {
 };
 let twooot = {};
 let  pollServer = () => {
-  // let oldData = {};
   setTimeout(function() {
     $.get('/tweets', (data)=>{
       if (JSON.stringify(data) !== twooot) {
@@ -68,7 +67,6 @@ let  pollServer = () => {
         $('.tweet-container').fadeIn('slow');
         twooot = JSON.stringify(data);
         pollServer();
-        // oldData = data;
       }
       pollServer();
     }).then(() => {
@@ -76,8 +74,8 @@ let  pollServer = () => {
       $('i.likeButton, .counter').on('click', function() {
         let d = $(this).parents('article');
 
-        let name = d.find('div').text();
-        let text = d.find('p').text().trim();
+        let name = d.find('div').text()
+        let text = d.find('p').text().trim()
 
         $.post('/like', {name, text});
       });
@@ -93,6 +91,8 @@ $(document).ready(function() {
   $(window).on('scroll',scrollButton);
   $('#tweetForm').on('submit', function(e) {
     let info = $(this).serialize();
+    info = info.replace(/%0D%0A/g, '   ')
+
     $.post('/tweets', info).then(()=>{
       $.get('/tweets', (data) => {
         renderTweets(data);
@@ -107,7 +107,6 @@ $(document).ready(function() {
         }, 800, 'linear');
       });
     }).fail(function(msg) {
-      console.log((msg.responseText));
       $('#tweetForm').hide();
       $('#error-message p').text(msg.responseText);
       $('#error-message').slideDown('medium');

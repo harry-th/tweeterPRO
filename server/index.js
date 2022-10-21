@@ -35,7 +35,7 @@ app.use(cookieSession({
 
 
 
-app.get('/', asyncWrapper(async (req, res) => {
+app.get('/', asyncWrapper(async(req, res) => {
   let userId = req.session.userId;
   if (!userId) res.redirect('/login');
   if (userId) {
@@ -50,7 +50,7 @@ app.get('/login', (req, res) => {
   res.render('login', { errorMessage: '' });
 });
 
-app.post('/login', asyncWrapper(async (req, res) => {
+app.post('/login', asyncWrapper(async(req, res) => {
   let { email, password } = req.body;
   let user = await User.findOne({ email });
   if (user && bcrypt.compareSync(password, user.password)) {
@@ -66,7 +66,7 @@ app.post('/logout', (req, res) => {
   res.redirect('/login');
 });
 
-app.post('/register', asyncWrapper(async (req, res) => {
+app.post('/register', asyncWrapper(async(req, res) => {
   let { username, email, password } = req.body;
   let userDB = await User.findOne({ email });
   let emailDB = await User.findOne({ username });
@@ -81,18 +81,18 @@ app.post('/register', asyncWrapper(async (req, res) => {
 }));
 
 
-app.post('/like', asyncWrapper(async (req, res) => {
+app.post('/like', asyncWrapper(async(req, res) => {
   let user = await User.findOne({ _id: req.session.userId }).select({ _id: 0, username: 1 });
   await Tweet.findOneAndUpdate(req.body, { $addToSet: { likedBy: user.username } });
   res.status(200).end();
 }));
 
 
-app.get("/tweets", asyncWrapper(async (req, res) => {
+app.get("/tweets", asyncWrapper(async(req, res) => {
   res.status(200).json(await Tweet.find({}));
 }));
 
-app.post("/tweets", asyncWrapper(async (req, res) => {
+app.post("/tweets", asyncWrapper(async(req, res) => {
   let user = await User.findOne({ _id: req.session.userId });
   if (!req.body.text) {
     return res.status(500).send('can\'t send empty message');
@@ -105,13 +105,13 @@ app.post("/tweets", asyncWrapper(async (req, res) => {
   res.status(201).send();
 }));
 
-app.post('/profileImg', asyncWrapper(async (req, res) => {
+app.post('/profileImg', asyncWrapper(async(req, res) => {
   let userId = req.session.userId;
   await User.findOneAndUpdate({ _id: userId }, { avatar: req.body.img });
   res.status(200).send();
 }));
 
-const start = async () => {
+const start = async() => {
   try {
     await databaseConnect(process.env.MONGO_URI || process.env.MONGO_URI_LOCAL);
     app.listen(process.env.PORT || PORT, () => {

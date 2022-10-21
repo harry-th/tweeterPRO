@@ -22,7 +22,7 @@ body {
   background-color: #f4f1ec;
   font-family: 'Source Sans Pro';
   font-size: 24px;
-  background-color: rgb(93, 219, 131,0.5);
+  background-color: rgb(93, 219, 131, 0.5);
   background-image: url("https://www.transparenttextures.com/patterns/3px-tile.png");
 }
 
@@ -63,43 +63,51 @@ section output {
 }
 
 section {
-  height:180px;
+  height: 180px;
   background-color: rgba(85, 92, 134, 0.5);
   padding: 20px;
 }
+
 .tweet-container {
   min-height: 100vh;
 }
+
 article {
   margin-top: 20px;
-  height:180px;
+  min-height: 180px;
   display: block;
   border: 2px solid black;
   padding: 15px;
-  background-color: rgb(245, 245, 245,0.8);
-  color:black;
+  background-color: rgb(245, 245, 245, 0.8);
+  color: black;
   position: relative;
-  top:0px;
+  top: 0px;
   z-index: 1;
 }
+
 article header div {
   color: #4056A1;
 }
+
 article header img {
-  width:35px;
+  width: 35px;
 }
+
 article header p {
   font-size: 18px;
-  overflow-wrap:break-word ;
+  overflow-wrap: break-word;
 }
 
 article:hover {
   box-shadow: 1px 1px 1px #4056A1;
 }
+
 article footer time {
   color: #4056A1;
 }
+
 article footer span {
+  font-size: min(2.5vw,24px);
   float: right
 }
 
@@ -110,17 +118,21 @@ article footer span i {
 
 .counter {
   color: whitesmoke;
-  font-size: 16px;
+  font-size: min(1.8vw, 16px);
   position: relative;
   left: -22px;
   top: 3px;
 }
-.counter:hover + i {
+
+.counter:hover+i {
   color: #4056A1
 }
-i:hover, .counter:hover {
+
+i:hover,
+.counter:hover {
   cursor: pointer;
 }
-  article footer span i:hover {
+
+article footer span i:hover {
   color: #4056A1
 }

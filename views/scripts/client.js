@@ -74,8 +74,8 @@ let  pollServer = () => {
       $('i.likeButton, .counter').on('click', function() {
         let d = $(this).parents('article');
 
-        let name = d.find('div').text()
-        let text = d.find('p').text().trim()
+        let name = d.find('div').text();
+        let text = d.find('p').text().trim();
 
         $.post('/like', {name, text});
       });
@@ -91,7 +91,7 @@ $(document).ready(function() {
   $(window).on('scroll',scrollButton);
   $('#tweetForm').on('submit', function(e) {
     let info = $(this).serialize();
-    info = info.replace(/%0D%0A/g, '   ')
+    info = info.replace(/%0D%0A/g, '   ');
 
     $.post('/tweets', info).then(()=>{
       $.get('/tweets', (data) => {
